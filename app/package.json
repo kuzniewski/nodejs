@@ -1,0 +1,15 @@
+{
+    "name": "MyApp",
+    "description": "My app rest",
+    "version": "0.0.1",
+    "private": true,
+    "main": "./app.js",
+    "dependencies": {
+        "express": "4.x",
+        "fs-extra" : "x.x",
+        "body-parser": "^1.8.1",
+        "json" : "x.x",
+        "ejs": "^1.0.0",
+        "mysql": "2.x"
+    }
+}
