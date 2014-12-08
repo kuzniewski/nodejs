@@ -6,7 +6,7 @@ UserController = function (app) {
 	// GET LIST USERS
 	app.get('/api/v1/user', function(req, res, next) {
 		UserModel.list(app, function(err, list) {
-			if (!err) {
+			if (!err && list !== false) {
 				res.status(200).send(list);
 			} else {
 				res.status(404).send("Not Found");
@@ -16,49 +16,73 @@ UserController = function (app) {
 
 	// CREATE NEW USER
 	app.post('/api/v1/user/add', function(req, res, next) {
-		UserModel.add(app, req, function(err, result) {
-			if (!err) {
-				res.status(201).send(result);
-			} else {
-				res.status(404).send("Not Found");
-			}
-		});
+		var _name 		= req.body.name || null;
+		var _user 		= req.body.user || null;
+		var _password 	= req.body.password || null;
+
+		if( _name != null && _user != null && _password != null ) {
+			UserModel.add(app, req, function(err, result) {
+				if (!err && result !== false) {
+					res.status(201).send(result);
+				} else {
+					res.status(404).send("Not Found");
+				}
+			});
+		} else {
+			res.status(404).send("Not Found");
+		}
 	});
 
 	// GET USER FOR ID
 	app.get('/api/v1/user/:id', function(req, res, next) {
 		var _id = req.params.id;
-		UserModel.get(app, _id, function(err, result) {
-			if (!err) {
-				res.status(200).send(result);
-			} else {
-				res.status(404).send("Not Found");
-			}
-		});
+		if( !_id ) {
+			UserModel.get(app, _id, function(err, result) {
+				if (!err && result !== false) {
+					res.status(200).send(result);
+				} else {
+					res.status(404).send("Not Found");
+				}
+			});
+		} else {
+			res.status(404).send("Not Found");
+		}
 	});
 
 	// DELETE USER FOR ID
 	app.delete('/api/v1/user/:id', function(req, res, next) {
 		var _id = req.params.id;
-		UserModel.del(app, _id, function(err, result) {
-			if (!err) {
-				res.status(200).send(result);
-			} else {
-				res.status(404).send("Not Found");
-			}
-		});
+		if( !_id ) {
+			UserModel.del(app, _id, function(err, result) {
+				if (!err && result !== false) {
+					res.status(200).send(result);
+				} else {
+					res.status(404).send("Not Found");
+				}
+			});
+		} else {
+			res.status(404).send("Not Found");
+		}
 	});
 
 	// UPDATE USER FOR ID
 	app.put('/api/v1/user/:id', function(req, res, next) {
-		var _id = req.params.id;
-		UserModel.update(app, _id, req, function(err, result) {
-			if (!err) {
-				res.status(200).send(result);
-			} else {
-				res.status(404).send("Not Found");
-			}
-		});
+		var _id 		= req.params.id || null;
+		var _name 		= req.body.name || null;
+		var _user 		= req.body.user || null;
+		var _password 	= req.body.password || null;
+
+		if( _id != null && (_name != null && _user != null) || (_name != null && _user != null && _password != null) ) {
+			UserModel.update(app, _id, req, function(err, result) {
+				if (!err && result !== false) {
+					res.status(200).send(result);
+				} else {
+					res.status(404).send("Not Found");
+				}
+			});
+		} else {
+			res.status(404).send("Not Found");
+		}
 	});
 
 };

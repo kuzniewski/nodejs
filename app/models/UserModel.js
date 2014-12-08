@@ -8,7 +8,7 @@ module.exports = {
 		var query = app.get('conn').query('SELECT * FROM user', function(err, rows, fields) {
 			if (err) { 
 				throw err;
-				return err;
+				next(err, false);
 			} else {
 				if(rows != "") {
 					var list = {};
@@ -17,7 +17,7 @@ module.exports = {
 				    }
 				    next(err, list);
 				} else {
-					return false;
+					next(err, false);
 				}
 			}
 		});
@@ -44,7 +44,7 @@ module.exports = {
 		var query = app.get('conn').query('SELECT * FROM user WHERE id = '+mysql.escape(id), function(err, rows, fields) {
 			if (err) { 
 				throw err;
-				return err;
+				next(err, false);
 			} else {
 				if(rows != "") {
 					var list = {};
@@ -53,7 +53,7 @@ module.exports = {
 				    }
 				    next(err, list);
 				} else {
-					return false;
+					next(err, false);
 				}
 			}
 		});
@@ -66,7 +66,7 @@ module.exports = {
 		var query = app.get('conn').query('DELETE FROM user WHERE id = '+mysql.escape(id), function(err, result) {
 			if (err) { 
 				throw err;
-				return err;
+				next(err, false);
 			} else {
 				next(err, result);
 			}
@@ -77,14 +77,17 @@ module.exports = {
 	},
 
 	update: function(app, id, req, next) {
-		var post = {name: mysql.escape(req.body.name), user: mysql.escape(req.body.user)};
-		if(req.body.password) {
-			post = {name: mysql.escape(req.body.name), user: mysql.escape(req.body.user), password: mysql.escape(req.body.password)};
+		var _name 		= mysql.escape(req.body.name);
+		var _user 		= mysql.escape(req.body.user);
+		var _password 	= mysql.escape(req.body.password);
+		var post 		= {name: _name, user: _user};
+		if(_password) {
+			post = {name: _name, user: _user, password: _password};
 		}
 		var query = app.get('conn').query("UPDATE user SET ?", post, function(err, result) {
 			if (err) { 
 				throw err;
-				return err;
+				next(err, false);
 			} else {
 				next(err, result);
 			}
