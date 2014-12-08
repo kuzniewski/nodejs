@@ -35,8 +35,8 @@ UserController = function (app) {
 
 	// GET USER FOR ID
 	app.get('/api/v1/user/:id', function(req, res, next) {
-		var _id = req.params.id;
-		if( !_id ) {
+		var _id = req.params.id || null;
+		if( _id != null ) {
 			UserModel.get(app, _id, function(err, result) {
 				if (!err && result !== false) {
 					res.status(200).send(result);
@@ -51,8 +51,8 @@ UserController = function (app) {
 
 	// DELETE USER FOR ID
 	app.delete('/api/v1/user/:id', function(req, res, next) {
-		var _id = req.params.id;
-		if( !_id ) {
+		var _id = req.params.id || null;
+		if( _id != null ) {
 			UserModel.del(app, _id, function(err, result) {
 				if (!err && result !== false) {
 					res.status(200).send(result);
