@@ -1,4 +1,4 @@
-// CONTROL LED RGB v1.0
+// CONTROL LED RGB v1.0.1
 // ÉDSON KUZNIEWSKI - 2014-12-10
 
 var piblaster 	= require('pi-blaster.js');
@@ -24,6 +24,7 @@ module.exports = function(r, g, b) {
 	    clearTimeout(this.pulseRed);
 	    clearTimeout(this.pulseYellow);
 	    clearTimeout(this.pulsePurple);
+	    clearTimeout(this.pulse);
 	};
 
 	this.red = function(timeout) {
@@ -81,6 +82,21 @@ module.exports = function(r, g, b) {
 			setTimeout(function(){
 				piblaster.setPwm(tmp.pinRed, 0);
 				piblaster.setPwm(tmp.pinGreen, 0);
+			}, timeout);
+		}
+	};
+
+	this.color = function(color, timeout) {
+		this.clear();
+		piblaster.setPwm(this.pinRed, color.r);
+		piblaster.setPwm(this.pinGreen, color.g);
+		piblaster.setPwm(this.pinBlue, color.b);
+		var tmp = this;
+		if(timeout > 0) {
+			setTimeout(function(){
+				piblaster.setPwm(tmp.pinRed, 0);
+				piblaster.setPwm(tmp.pinGreen, 0);
+				piblaster.setPwm(tmp.pinBlue, 0);
 			}, timeout);
 		}
 	};
