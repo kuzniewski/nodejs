@@ -16,9 +16,9 @@ module.exports = function(r, g, b) {
 	this.pulsePurple;
 
     this.clear = function() {
-	    piblaster.setPwm(this.pinRed, 0 / 100);
-		piblaster.setPwm(this.pinGreen, 0 / 100);
-		piblaster.setPwm(this.pinBlue, 0 / 100);
+	    piblaster.setPwm(this.pinRed, 0);
+		piblaster.setPwm(this.pinGreen, 0);
+		piblaster.setPwm(this.pinBlue, 0);
 	    clearTimeout(this.pulseBlue);
 	    clearTimeout(this.pulseGreen);
 	    clearTimeout(this.pulseRed);
@@ -85,76 +85,76 @@ module.exports = function(r, g, b) {
 		}
 	};
 
-	this.redPulse = function(brightness, timeout, maismenos) {
+	this.redPulse = function(brightness, sleep, orientation) {
 		var tmp = this;
 		this.pulseRed = setTimeout(function(){
 			piblaster.setPwm(tmp.pinRed, brightness / 100);
-			if(brightness==100) {maismenos=0;}
-			if(brightness==0) {maismenos=1;}
-			if(maismenos==1){
-				tmp.redPulse( (brightness+1), timeout, 1);
+			if(brightness==100) {orientation=0;}
+			if(brightness==0) {orientation=1;}
+			if(orientation==1){
+				tmp.redPulse( (brightness+1), sleep, 1);
 			} else {
-				tmp.redPulse( (brightness-1), timeout, 0);
+				tmp.redPulse( (brightness-1), sleep, 0);
 			}
-		}, timeout);
+		}, sleep);
 	};
 
-	this.greenPulse = function(brightness, timeout, maismenos) {
+	this.greenPulse = function(brightness, sleep, orientation) {
 		var tmp = this;
 		this.pulseGreen = setTimeout(function(){
 			piblaster.setPwm(tmp.pinGreen, brightness / 100);
-			if(brightness==100) {maismenos=0;}
-			if(brightness==0) {maismenos=1;}
-			if(maismenos==1){
-				tmp.greenPulse( (brightness+1), timeout, 1);
+			if(brightness==100) {orientation=0;}
+			if(brightness==0) {orientation=1;}
+			if(orientation==1){
+				tmp.greenPulse( (brightness+1), sleep, 1);
 			} else {
-				tmp.greenPulse( (brightness-1), timeout, 0);
+				tmp.greenPulse( (brightness-1), sleep, 0);
 			}
-		}, timeout);
+		}, sleep);
 	};
 
-	this.bluePulse = function(brightness, timeout, maismenos) {
+	this.bluePulse = function(brightness, sleep, orientation) {
 		var tmp = this;
 		this.pulseBlue = setTimeout(function(){
 			piblaster.setPwm(tmp.pinBlue, brightness / 100);
-			if(brightness==100) {maismenos=0;}
-			if(brightness==0) {maismenos=1;}
-			if(maismenos==1){
-				tmp.bluePulse( (brightness+1), timeout, 1);
+			if(brightness==100) {orientation=0;}
+			if(brightness==0) {orientation=1;}
+			if(orientation==1){
+				tmp.bluePulse( (brightness+1), sleep, 1);
 			} else {
-				tmp.bluePulse( (brightness-1), timeout, 0);
+				tmp.bluePulse( (brightness-1), sleep, 0);
 			}
-		}, timeout);
+		}, sleep);
 	};
 
-	this.purplePulse = function(brightness, timeout, maismenos) {
+	this.purplePulse = function(brightness, sleep, orientation) {
 		var tmp = this;
 		this.pulsePurple = setTimeout(function(){
 			piblaster.setPwm(tmp.pinRed, brightness / 100);
 			piblaster.setPwm(tmp.pinBlue, brightness / 100);
-			if(brightness==100) {maismenos=0;}
-			if(brightness==0) {maismenos=1;}
-			if(maismenos==1){
-				tmp.purplePulse( (brightness+1), timeout, 1);
+			if(brightness==100) {orientation=0;}
+			if(brightness==0) {orientation=1;}
+			if(orientation==1){
+				tmp.purplePulse( (brightness+1), sleep, 1);
 			} else {
-				tmp.purplePulse( (brightness-1), timeout, 0);
+				tmp.purplePulse( (brightness-1), sleep, 0);
 			}
-		}, timeout);
+		}, sleep);
 	};
 
-	this.yellowPulse = function(brightness, timeout, maismenos) {
+	this.yellowPulse = function(brightness, sleep, orientation) {
 		var tmp = this;
 		this.pulseYellow = setTimeout(function(){
 			piblaster.setPwm(tmp.pinRed, brightness / 100);
 			piblaster.setPwm(tmp.pinGreen, (brightness-15) / 100);
-			if(brightness==100) {maismenos=0;}
-			if(brightness==0) {maismenos=1;}
-			if(maismenos==1){
-				tmp.yellowPulse( (brightness+1), timeout, 1);
+			if(brightness==100) {orientation=0;}
+			if(brightness==0) {orientation=1;}
+			if(orientation==1){
+				tmp.yellowPulse( (brightness+1), sleep, 1);
 			} else {
-				tmp.yellowPulse( (brightness-1), timeout, 0);
+				tmp.yellowPulse( (brightness-1), sleep, 0);
 			}
-		}, timeout);
+		}, sleep);
 	};
 
 };
