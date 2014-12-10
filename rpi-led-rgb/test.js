@@ -15,3 +15,9 @@ led.red(1000);
 //led.bluePulse(0, 10, 1);
 //led.purplePulse(0, 10, 1);
 //led.yellowPulse(0, 10, 1);
+
+// led.color({
+// 	r:1, 
+// 	g:0.5, 
+// 	b:0
+// }, 1000);
