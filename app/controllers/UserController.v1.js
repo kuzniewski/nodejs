@@ -1,5 +1,5 @@
 var debug 		= require('../libs/debugHelper.js');
-var UserModel 	= require('../models/UserModel.js');
+var UserModel 	= require('../models/UserModel.v1.js');
 
 UserController = function (app) {
 
