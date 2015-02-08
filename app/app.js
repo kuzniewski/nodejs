@@ -32,11 +32,12 @@ app.set('_log', app.get('config').log);
 
 var msgServer   = "";
 if ('development' == app.get('env')) {
-  msgServer = 'server is listen on port '+app.get('config').port+' in development mode / LOG['+((app.get('config').log == 1) ? "ON" : "OFF")+'] DEBUG['+((app.get('config').debug == 1) ? "ON" : "OFF")+']';
+    app.set('_debug', 1); // force debug ON
+    msgServer = 'server is listen on port '+app.get('config').port+' in development mode / LOG['+((app.get('_log') == 1) ? "ON" : "OFF")+'] DEBUG['+((app.get('_debug') == 1) ? "ON" : "OFF")+']';
 }
 
 if ('production' == app.get('env')) {
-  msgServer = 'server is listen on port '+app.get('config').port+' in production mode / LOG['+((app.get('config').log == 1) ? "ON" : "OFF")+'] DEBUG['+((app.get('config').debug == 1) ? "ON" : "OFF")+']';
+    msgServer = 'server is listen on port '+app.get('config').port+' in production mode / LOG['+((app.get('_log') == 1) ? "ON" : "OFF")+'] DEBUG['+((app.get('_debug') == 1) ? "ON" : "OFF")+']';
 }
 
 // disable header express
