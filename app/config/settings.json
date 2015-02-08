@@ -1,5 +1,7 @@
 {
 	"port" : "8080",
-	"version" : "0.0.1",
-	"versionDate" : "2014-12-04"
+	"version" : "0.0.2",
+	"versionDate" : "2015-02-08",
+	"log" : "1",
+	"debug" : "0"
 }

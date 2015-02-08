@@ -1,11 +1,12 @@
 {
     "name": "MyApp",
     "description": "My app rest",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "private": true,
     "main": "./app.js",
     "dependencies": {
         "express": "4.x",
+        "express-load": "1.1.14",
         "fs-extra" : "x.x",
         "body-parser": "^1.8.1",
         "json" : "x.x",
