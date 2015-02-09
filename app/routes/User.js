@@ -1,6 +1,6 @@
 module.exports = function(app) {
 
-	var userControllerV1 = app.controllers.UserV1;
+	var userControllerV1 = app.controllers.v1.User;
 
 	app.route('/api/v1/user')
 		.get(userControllerV1.getlist);

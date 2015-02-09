@@ -1,5 +1,5 @@
 module.exports = function(app) {
-	var UserModel 	= app.models.UserV1;
+	var UserModel 	= app.models.v1.User;
 	var controller = {};
 
 	// GET LIST USERS
